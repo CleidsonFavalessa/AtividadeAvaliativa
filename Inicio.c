@@ -59,11 +59,45 @@ int Operacao(char operador[], int primeiro_numero_decimal, int segundo_numero_de
     return resultado;
 }
 
-
+char resultado_binario[8];
 //faz converssao de decimal para binario
-char Converter_decimal_binario(int binario)
+void Converter_decimal_binario(int decimal)
 {
-    return "0";
+    int resto = 0;
+    
+    int novo_decimal=decimal;
+    
+    for (int m=0;m<8;m++)
+    {
+        if(novo_decimal>1)
+        {
+            resto=novo_decimal%2;
+           
+            if(resto==0)
+            {
+                novo_decimal=novo_decimal/2;
+                resultado_binario[m]='0';
+            }else
+            {
+                novo_decimal=(novo_decimal- 1)/2;
+                resultado_binario[m]='1';
+            }
+            
+        }else
+        {
+            if(novo_decimal=1)
+            {
+            resultado_binario[m]='1';
+            novo_decimal=novo_decimal- 1;
+            }
+            else
+            {
+                resultado_binario[m]='0';
+            }
+        }   
+        
+    }
+   // return 0;
 }
 
 
@@ -99,9 +133,10 @@ int main()
     resultado_decimal = Operacao(operador, primeiro_numero_decimal, segundo_numero_decimal);
     printf("\n O Resultado Decimal é: %i \n", resultado_decimal);
     
-    char resultado_binario[8];
-    resultado_binario[0] = Converter_decimal_binario(resultado_decimal);
-    printf("\n O Resultado Binario é: %s \n", resultado_binario[0]);
+    //char resultado_binario [8];
+    Converter_decimal_binario(resultado_decimal);
+    printf("\n O Resultado Binario é: %s \n", resultado_binario);
+    //Função está fazendo a conversão errado, verificar!!
 
     return 0;
 }
